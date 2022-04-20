@@ -24,15 +24,6 @@ func TestCyclicRotation(t *testing.T) {
 		actual := CyclicRotation(test.input, test.k)
 		assert.Equal(t, test.expected, actual)
 
-		//if result != test.expected {
-		//	t.Errorf("FAIL --- %s, expected '%v', received '%v'", test.name, test.expected, result)
-		//}
 	}
-
-	/*for _, test := range tests {
-		actual := SolutionIteration(test.input)
-		assert.Equal(t, test.expected, actual)
-
-	}*/
 
 }

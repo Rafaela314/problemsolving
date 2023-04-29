@@ -1,16 +1,45 @@
 package codility
 
+func MaxCounters(N int, A []int) []int {
+
+	counters := make([]int, N)
+
+	var bigger int
+
+	for i, v := range A {
+		if v >= 1 && v <= N {
+			x := counters[v-1] + 1
+			counters[v-1] = x
+
+			if x > bigger {
+				bigger = x
+			}
+
+		}
+
+		if A[i] == N+1 {
+
+			for i := 0; i < N; i++ {
+				counters[i] = bigger
+			}
+
+		}
+	}
+
+	return counters
+
+}
+
 /*You are given N counters, initially set to 0, and you have two possible operations on them:
 
-        increase(X) − counter X is increased by 1,
-        max counter − all counters are set to the maximum value of any counter.
-
+increase(X) − counter X is increased by 1,
+max counter − all counters are set to the maximum value of any counter.
 A non-empty array A of M integers is given. This array represents consecutive operations:
 
-        if A[K] = X, such that 1 ≤ X ≤ N, then operation K is increase(X),
-        if A[K] = N + 1 then operation K is max counter.
-
+if A[K] = X, such that 1 ≤ X ≤ N, then operation K is increase(X),
+if A[K] = N + 1 then operation K is max counter.
 For example, given integer N = 5 and array A such that:
+
     A[0] = 3
     A[1] = 4
     A[2] = 4
@@ -18,8 +47,8 @@ For example, given integer N = 5 and array A such that:
     A[4] = 1
     A[5] = 4
     A[6] = 4
-
 the values of the counters after each consecutive operation will be:
+
     (0, 0, 1, 0, 0)
     (0, 0, 1, 1, 0)
     (0, 0, 1, 2, 0)
@@ -27,18 +56,18 @@ the values of the counters after each consecutive operation will be:
     (3, 2, 2, 2, 2)
     (3, 2, 2, 3, 2)
     (3, 2, 2, 4, 2)
-
 The goal is to calculate the value of every counter after all operations.
 
 Write a function:
 
-    class Solution { public int[] solution(int N, int[] A); }
+func Solution(N int, A []int) []int
 
 that, given an integer N and a non-empty array A consisting of M integers, returns a sequence of integers representing the values of the counters.
 
 Result array should be returned as an array of integers.
 
 For example, given:
+
     A[0] = 3
     A[1] = 4
     A[2] = 4
@@ -46,38 +75,9 @@ For example, given:
     A[4] = 1
     A[5] = 4
     A[6] = 4
+the function should return [3, 2, 2, 4, 2], as explained above.
 
-the function should return [3, 2, 2, 4, 2], as explained above.*/
+Write an efficient algorithm for the following assumptions:
 
-func MaxCounters(A []int, N int) []int {
-	result := make([]int, N)
-
-	var maxCount int
-
-	for _, v := range A {
-
-		if v >= 1 && v <= N {
-
-			result[v-1]++
-			if result[v-1] > maxCount {
-				maxCount = result[v-1]
-			}
-
-		} else {
-
-			for x, y := range result {
-
-				if y != maxCount {
-					result[x] = maxCount
-
-				}
-			}
-
-		}
-		continue
-
-	}
-
-	return result
-
-}
+N and M are integers within the range [1..100,000];
+each element of array A is an integer within the range [1..N + 1].*/

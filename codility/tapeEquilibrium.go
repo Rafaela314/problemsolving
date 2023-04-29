@@ -1,4 +1,4 @@
-package main
+package codility
 
 /*
 A non-empty array A consisting of N integers is given. Array A represents numbers on a tape.
@@ -81,14 +81,3 @@ func TapeEquilibrium(A []int) int {
 
 	return min
 }
-
-/*
-func main() {
-
-	x := TapeEquilibrium([]int{2, 3})          //p -> 0,1 -->delta 1
-	y := TapeEquilibrium([]int{3, 1, 2, 4, 3}) //--> delta 1
-	t := TapeEquilibrium([]int{3, 1, 1, 3})    //--> delta 0
-
-	fmt.Println(x, y, t)
-
-}*/

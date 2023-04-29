@@ -1,4 +1,4 @@
-package main
+package codility
 
 /*
 An array A consisting of N different integers is given.

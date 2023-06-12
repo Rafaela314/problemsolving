@@ -6,7 +6,7 @@ import (
 
 func TestSolutionIteration(t *testing.T) {
 
-	tests := []struct {
+	cases := []struct {
 		name     string
 		input    int
 		expected int
@@ -18,19 +18,25 @@ func TestSolutionIteration(t *testing.T) {
 		{name: "case 5 ", input: 32, expected: 0},
 	}
 
-	for _, test := range tests {
-
-		result := SolutionIteration(test.input)
-
-		if result != test.expected {
-			t.Errorf("FAIL --- %s, expected '%v', received '%v'", test.name, test.expected, result)
+	for _, c := range cases {
+		actual := SolutionIteration(c.input)
+		if actual != c.expected {
+			t.Fatalf("Input %d. Expected: %b, actual: %b\n", c.input, c.expected, actual)
 		}
+
 	}
+}
 
-	/*for _, test := range tests {
-		actual := SolutionIteration(test.input)
-		assert.Equal(t, test.expected, actual)
+var num = 100
 
-	}*/
+func BenchmarkSolutionIteration(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		SolutionIteration(num)
+	}
+}
 
+func BenchmarkSolutionIteration2(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		SolutionIteration2(num)
+	}
 }

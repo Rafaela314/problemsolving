@@ -7,6 +7,28 @@ import (
 
 func PermMissingElem(A []int) int {
 
+	if len(A) == 0 {
+		return 1
+	}
+
+	sort.Ints(A)
+
+	for i := 1; i < len(A); i++ {
+		if A[i] != A[i-1]+1 {
+			fmt.Printf("\n A[i] %v  \n", A[i])
+			return A[i] - 1
+		}
+	}
+
+	if A[0] != 1 {
+		return 1
+	}
+
+	return A[len(A)-1] + 1
+}
+
+func PermMissingElem2(A []int) int {
+
 	sort.Ints(A)
 
 	var first bool
@@ -57,15 +79,3 @@ func PermMissingElem(A []int) int {
 	}
 	return result
 }
-
-/*
-func main() {
-	x := PermMissingElem([]int{})
-	y := PermMissingElem([]int{1})
-	z := PermMissingElem([]int{2})
-	w := PermMissingElem([]int{1, 2, 3, 4})
-	v := PermMissingElem([]int{1, 2, 3, 4, 6})
-
-	fmt.Println(x, y, z, w, z, v)
-}
-*/

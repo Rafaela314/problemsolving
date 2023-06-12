@@ -2,13 +2,11 @@ package codility
 
 import (
 	"testing"
-
-	"github.com/stretchr/testify/assert"
 )
 
 func TestFrogJmp(t *testing.T) {
 
-	tests := []struct {
+	cases := []struct {
 		name     string
 		x        int
 		y        int
@@ -18,10 +16,12 @@ func TestFrogJmp(t *testing.T) {
 		{name: "case 1 ", x: 10, y: 85, d: 30, expected: 3},
 	}
 
-	for _, test := range tests {
+	for _, c := range cases {
 
-		actual := FrogJmp(test.x, test.y, test.d)
-		assert.Equal(t, test.expected, actual)
+		actual := FrogJmp(c.x, c.y, c.d)
+		if actual != c.expected {
+			t.Fatalf("Input x: %d y:%d d: %d. Expected: %b, actual: %b\n", c.x, c.y, c.d, c.expected, actual)
+		}
 
 	}
 

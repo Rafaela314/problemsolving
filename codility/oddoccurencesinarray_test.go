@@ -3,8 +3,6 @@ package codility
 import (
 	"testing"
 
-	"rand"
-
 	"github.com/stretchr/testify/assert"
 )
 
@@ -22,35 +20,8 @@ func TestOddOccurrencesInArray(t *testing.T) {
 
 	for _, test := range tests {
 
-		actual := OddOccurrencesInArray(test.input)
+		actual := OddOccurrencesInArray2(test.input)
 		assert.Equal(t, test.expected, actual)
 
 	}
 }
-func insertXSlice(itemsCount int, b *testing.B) {
-	testSlice := []int{}
-
-	for i := 0; i < itemsCount; i += 1 {
-		testSlice = append(testSlice, i)
-	}
-}
-
-func createArray(arraySize int) []int {
-	testArray := make([]int, arraySize)
-
-	for i := 1; i <= arraySize; i += 1 {
-		testArray[i] = i
-	}
-
-	return testArray
-}
-
-/*
-func BenchmarkOddOccurrencesInArray(b *testing.B) {
-
-	rand.Seed(int(b.N))
-	b.ResetTimer()
-	for i := 0; i < b.N; i++ {
-		OddOccurrencesInArray(num)
-	}
-}*/

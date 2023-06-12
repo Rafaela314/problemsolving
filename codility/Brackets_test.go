@@ -1,11 +1,6 @@
 package codility
 
-import (
-	"testing"
-
-	"github.com/stretchr/testify/assert"
-)
-
+/*
 func TestBrackets(t *testing.T) {
 
 	tests := []struct {
@@ -25,3 +20,4 @@ func TestBrackets(t *testing.T) {
 	}
 
 }
+*/

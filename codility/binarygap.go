@@ -22,7 +22,6 @@ func SolutionIteration(N int) int {
 			count++
 		}
 	}
-	fmt.Println(bigger)
 
 	return bigger
 }

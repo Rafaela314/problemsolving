@@ -23,6 +23,8 @@ func FrogRiverOne(X int, A []int) int {
 				result = k
 
 				break
+			} else {
+				result = -1
 			}
 		}
 	}

@@ -11,6 +11,8 @@ func TestIsUnique(t *testing.T) {
 		expected int
 	}{
 		{[]int{1, 3, 1, 4, 2, 3, 5, 4}, 5, 6},
+		{[]int{1, 1, 1}, 1, -1},
+		{[]int{1}, 1, -1},
 		{[]int{1, 3, 1, 4, 2, 3, 5, 4, 8, 3, 7, 6, 3, 2}, 8, 11},
 	}
 	for _, c := range cases {

@@ -5,19 +5,6 @@ import (
 	"strings"
 )
 
-func findMatch(a string) int {
-	switch a {
-	case "A":
-		return 1
-	case "C":
-		return 2
-	case "G":
-		return 3
-	default:
-		return 4
-	}
-}
-
 func GenomicRangeQuery(S string, P, Q []int) []int {
 
 	result := []int{}
@@ -57,6 +44,19 @@ func GenomicRangeQuery(S string, P, Q []int) []int {
 	}
 
 	return result
+}
+
+func findMatch(a string) int {
+	switch a {
+	case "A":
+		return 1
+	case "C":
+		return 2
+	case "G":
+		return 3
+	default:
+		return 4
+	}
 }
 
 func GenomicRangeQuery2(S string, P, Q []int) []int {

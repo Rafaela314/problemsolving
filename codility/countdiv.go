@@ -2,20 +2,27 @@ package codility
 
 func CountDiv(A, B, K int) int {
 
-	c := 0
-
-	if A == 0 {
-		c++
+	if A == 0 && B == 0 {
+		return 1
 	}
 
-	if K >= A {
-		return (B / K) + c
+	var firstDiv int
+	var found bool
+
+	for i := A; i <= B; i++ {
+		if i%K == 0 {
+			firstDiv = i
+			found = true
+			break
+		}
 	}
 
-	if A%K == 0 {
-		c++
+	if !found && firstDiv == 0 {
+		return firstDiv
 	}
 
-	return ((B - A) / K) + c
+	count := ((B - firstDiv) / K) + 1
+
+	return count
 
 }

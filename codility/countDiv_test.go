@@ -13,10 +13,13 @@ func TestCountDiv(t *testing.T) {
 		k        int
 		expected int
 	}{
+
 		{name: "case 1 ", a: 6, b: 11, k: 2, expected: 3},
 		{name: "case 2 ", a: 11, b: 345, k: 17, expected: 20},
 		{name: "case 3 ", a: 0, b: 0, k: 11, expected: 1},
 		{name: "case 4 ", a: 1, b: 1, k: 11, expected: 0},
+		{name: "case 5 ", a: 10, b: 10, k: 5, expected: 1},
+		{name: "case 6 ", a: 0, b: 1000, k: 1, expected: 1001},
 	}
 
 	for _, test := range tests {

@@ -2,100 +2,85 @@ package codility
 
 import (
 	"fmt"
-	"strings"
 )
 
+// O(N + M)
 func GenomicRangeQuery(S string, P, Q []int) []int {
 
-	result := []int{}
+	result := make([]int, len(P))
 
-	fmt.Printf("\n S@ %v \n", string(S[2]))
+	positions := map[string][]int{"A": {}, "C": {}, "G": {}}
+
+	comp := map[string]int{"A": 1, "C": 2, "G": 3, "T": 4}
+
+	for i, v := range S {
+		if v == rune('A') {
+			positions["A"] = append(positions["A"], i)
+
+		}
+		if v == rune('C') {
+			positions["C"] = append(positions["C"], i)
+
+		}
+		if v == rune('G') {
+			positions["G"] = append(positions["G"], i)
+
+		}
+	}
+
+	fmt.Printf("\n POSITIONS:%v \n", positions)
 
 	for i := 0; i < len(P); i++ {
 
-		if P[i] == Q[i] {
+		var found bool
 
-			result = append(result, findMatch(string(S[P[i]])))
-			break
+		for _, a := range positions["A"] {
+
+			if P[i] <= a && Q[i] >= a {
+
+				found = true
+				break
+			}
+
 		}
 
-		k := S[P[i]:Q[i]]
-
-		fmt.Printf("\n k %v \n", k)
-
-		if strings.Contains(k, "A") {
-			result = append(result, 1)
+		if found {
+			result[i] = comp["A"]
 			continue
 		}
 
-		if strings.Contains(k, "C") {
-			result = append(result, 2)
+		for _, c := range positions["C"] {
+
+			if P[i] <= c && Q[i] >= c {
+
+				found = true
+				break
+			}
+		}
+
+		if found {
+			result[i] = comp["C"]
 			continue
 		}
 
-		if strings.Contains(k, "G") {
-			result = append(result, 3)
+		for _, g := range positions["G"] {
+
+			if P[i] <= g && Q[i] >= g {
+				found = true
+				break
+			}
+
+		}
+
+		if found {
+			result[i] = comp["G"]
 			continue
 		}
-		if strings.Contains(k, "T") {
-			result = append(result, 4)
-		}
-		fmt.Printf("\n result %v \n", result)
+
+		result[i] = comp["T"]
+
 	}
-
-	return result
-}
-
-func findMatch(a string) int {
-	switch a {
-	case "A":
-		return 1
-	case "C":
-		return 2
-	case "G":
-		return 3
-	default:
-		return 4
-	}
-}
-
-func GenomicRangeQuery2(S string, P, Q []int) []int {
-
-	result := []int{}
-
-	fmt.Printf("\n S@ %v \n", string(S[2]))
-
-	for i := 0; i < len(P); i++ {
-
-		if P[i] == Q[i] {
-
-			result = append(result, findMatch(string(S[P[i]])))
-			break
-		}
-
-		k := S[P[i]:Q[i]]
-
-		fmt.Printf("\n k %v \n", k)
-
-		if strings.Contains(k, "A") {
-			result = append(result, 1)
-			continue
-		}
-
-		if strings.Contains(k, "C") {
-			result = append(result, 2)
-			continue
-		}
-
-		if strings.Contains(k, "G") {
-			result = append(result, 3)
-			continue
-		}
-		if strings.Contains(k, "T") {
-			result = append(result, 4)
-		}
-		fmt.Printf("\n result %v \n", result)
-	}
+	fmt.Printf("\n Result:%v \n", result)
 
 	return result
 }

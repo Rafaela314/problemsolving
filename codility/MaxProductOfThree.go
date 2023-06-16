@@ -1,126 +1,73 @@
 package codility
 
-import (
-	"sort"
-)
+import "fmt"
 
 func MaxProductOfThree(A []int) int {
 
-	sort.Ints(A)
+	var p1, p2, p3, n1, n2, m1, m2, m3 int
 
-	x := A[len(A)-1] * A[len(A)-2] * A[len(A)-3]
-	y := A[len(A)-3] * A[0] * A[1]
+	// p : biggest positives
+	// n smallest negatives
+	// m biggest negatives
 
-	if x > y {
-		return x
+	if len(A) == 3 {
+		return A[0] * A[1] * A[2]
 	}
 
-	return y
+	var hasPositive bool
+
+	for _, v := range A {
+
+		if v >= 0 {
+
+			hasPositive = true
+			if v >= p1 {
+				p3 = p2
+				p2 = p1
+				p1 = v
+			} else if v >= p2 {
+				p3 = p2
+				p2 = v
+			} else if v > p3 {
+				p3 = v
+			}
+		}
+
+		if v < 0 {
+			if v <= n1 {
+				n2 = n1
+				n1 = v
+			} else if v <= n2 {
+				n2 = v
+			}
+
+			if v >= m1 || m1 == 0 {
+				m3 = m2
+				m2 = m1
+				m1 = v
+			} else if v >= m2 || m2 == 0 {
+				m3 = m2
+				m2 = v
+			} else if v > m3 {
+				m3 = v
+			}
+
+		}
+		fmt.Printf(" \n p1: %v p2: %v p3: %v n1: %v n2: %v m1: %v m2: %v m3: %v\n", p1, p2, p3, n1, n2, m1, m2, m3)
+
+	}
+
+	if !hasPositive {
+		return m1 * m2 * m3
+	}
+
+	a := p1 * p2 * p3
+	b := p1 * n1 * n2
+
+	if a > b {
+		return a
+	}
+
+	return b
 
 }
-
-/*
-func MaxProductOfThree(A []int) int {
-
-	sort.Ints(A)
-
-	fmt.Printf(" \n A[]: %v \n", A[(len(A)-3):])
-
-	result := A[(len(A)-1)] * A[(len(A)-2)] * A[(len(A)-3)]
-
-	fmt.Printf(" \n result: %d \n", result)
-
-	return result
-}*/
-/*
-func MaxProductOfThree(A []int) int {
-
-	m := make(map[int]int, len(A))
-
-	for k, v := range A {
-		m[v] = k
-	}
-
-	counter := 0
-	a := 0
-	b := 0
-	c := 0
-
-	sort.Ints(A)
-	fmt.Printf(" \n A: %v \n", A)
-	fmt.Printf(" \n M: %v \n", m)
-
-	for i := len(A) - 1; i > 0; i-- {
-
-		if m[A[i]] > m[A[i-1]] {
-			if counter == 0 {
-				a = A[i]
-
-			}
-			if counter == 1 {
-				b = A[i]
-
-			}
-			if counter == 2 {
-				c = A[i]
-
-			}
-			counter++
-
-			if counter == 3 {
-				break
-			}
-		}
-
-	}
-
-	fmt.Printf(" \n FINAL a: %d b %d c %d \n", a, b, c)
-	return a * b * c
-}
-*/
-/*func MaxProductOfThree(A []int) int {
-
-	var result int
-
-	first := A[0]
-	firstIdx := 0
-	second := 0
-	secondIdx := 0
-	third := 0
-	thirdIdx := 0
-
-	for i := 1; i < len(A); i++ {
-
-		if A[i] > first && i > firstIdx {
-			third = second
-			thirdIdx = secondIdx
-			second = first
-			secondIdx = firstIdx
-			first = A[i]
-			firstIdx = i
-
-			if (first * second * third) > result {
-				result = first * second * third
-			}
-		}
-
-		if first > A[i] && A[i] > second && i < firstIdx {
-			third = second
-			thirdIdx = secondIdx
-			second = A[i]
-			if (first * second * third) > result {
-				result = first * second * third
-			}
-		}
-
-		if second > A[i] && A[i] > thirdIdx && i < secondIdx {
-			third = A[i]
-			if (first * second * third) > result {
-				result = first * second * third
-			}
-		}
-		fmt.Printf(" \n first: %d second: %d third: %d \n", first, second, third)
-		fmt.Printf(" \n firstIdx: %d secondIdx: %d thirdIdx: %d \n", firstIdx, secondIdx, thirdIdx)
-	}
-	return first * second * third
-}*/

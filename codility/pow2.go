@@ -31,7 +31,7 @@ func Pow2(A []int) int {
 		days = 0
 		goal = 0
 
-		for j, _ := range m {
+		for j := range m {
 			m[j] = false
 		}
 

@@ -1,23 +1,21 @@
 package codility
 
-/*
 func TestBrackets(t *testing.T) {
 
 	tests := []struct {
 		s        string
 		expected int
 	}{
-		{s: "CAGCCTA", expected: 1},
-		//{name: "case 1 ", s: "CAGCCTATGC", p: []int{2, 5, 0}, q: []int{4, 5, 6}, expected: []int{2, 4, 1}},
+		{s: "{[()()]}", expected: 1},
+		{s: "([)()]", expected: 0},
 	}
 
 	for _, test := range tests {
 
-		result := Brackets(test.s, test.p, test.q)
+		result := Brackets(test.s)
 
 		assert.Equal(t, test.expected, result)
 
 	}
 
 }
-*/

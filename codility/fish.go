@@ -1,7 +1,6 @@
 package codility
 
-import "fmt"
-
+// O(N)
 func Fish(A []int, B []int) int {
 
 	var alive int
@@ -55,7 +54,7 @@ func Fish(A []int, B []int) int {
 		}
 
 	}
-	fmt.Printf("\n K: %v ALIVE: %v, TEMP: %v, BIGGEST: %v \n", k, alive, temp, biggest)
+	//fmt.Printf("\n K: %v ALIVE: %v, TEMP: %v, BIGGEST: %v \n", k, alive, temp, biggest)
 
 	return alive
 

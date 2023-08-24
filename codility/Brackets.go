@@ -65,3 +65,50 @@ func Brackets(S string) int {
 
 	return 1
 }
+
+/*
+
+var m = map[string]string{
+    "{": "}",
+    "(": ")",
+    "[": "]",
+}
+
+func ValidBraces(str string) bool {
+    s := make([]string, 0)
+    for _, r := range str {
+        r := string(r)
+        if len(s) > 0 && m[s[len(s) - 1]] == r {
+            s = s[:len(s) - 1]
+        } else {
+            s = append(s, r)
+        }
+    }
+    return len(s) == 0
+}
+
+// other way
+
+func ValidBraces(str string) bool {
+  stack := make([]rune, 0)
+	for _, c := range str {
+		switch c {
+		case '(':
+			stack = append(stack, ')')
+		case '[':
+			stack = append(stack, ']')
+		case '{':
+			stack = append(stack, '}')
+		case ')', ']', '}':
+      if len(stack) == 0 {
+        return false
+      }
+			if stack[len(stack)-1] != c {
+				return false
+			}
+			stack = stack[:len(stack)-1]
+		}
+	}
+  return len(stack) == 0
+}
+*/
